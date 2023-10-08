@@ -17,11 +17,6 @@ import java.util.List;
 @Service
 public class FileUploaderServiceImpl implements IFileUploaderService {
 
-
-    public List<Invoice> invoiceExcelReaderService() {
-        return null;
-    }
-
     @Value("${app.upload.dir:${user.home}}")
     public String uploadDir;
 

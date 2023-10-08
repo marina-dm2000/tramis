@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import org.springframework.boot.jackson.JsonComponent;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -28,12 +27,11 @@ public class DateConverter {
             try {
                 if (value == null) {
                     jgen.writeNull();
-                }
-                else {
+                } else {
                     jgen.writeString(DateTimeFormatter
-                            .ofPattern(DATE_FORMAT).withZone(ZoneId.systemDefault()).format(value) );
+                            .ofPattern(DATE_FORMAT).withZone(ZoneId.systemDefault()).format(value));
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -46,12 +44,12 @@ public class DateConverter {
         public Instant deserialize(JsonParser jp, DeserializationContext ctxt) {
             try {
                 String dateAsString = jp.getText();
-                if (dateAsString==null) {
+                if (dateAsString == null) {
                     return null;
                 } else {
                     return Instant.ofEpochMilli(sdf1.parse(dateAsString).getTime());
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return null;
